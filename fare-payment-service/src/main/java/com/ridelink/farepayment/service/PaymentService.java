@@ -50,12 +50,13 @@ public class PaymentService {
         Payment payment = paymentRepository.findByRideId(request.rideId()).orElse(null);
         boolean created = payment == null;
 
-        if (!created && payment.getStatus().equals(PaymentStatus.SUCCESSFUL)) {
-            throw new DuplicatePaymentException(request.rideId());
-        }
         if (created) {
             payment = newPayment(fare, request);
-        } else {                                   // retry after a failed attempt
+        } else {
+            if (payment.getStatus() == PaymentStatus.SUCCESSFUL) {
+                throw new DuplicatePaymentException(request.rideId());
+            }
+            // Retry after a failed attempt.
             payment.setMethod(request.method());
             payment.setStatus(PaymentStatus.PENDING);
             payment.setFailureReason(null);

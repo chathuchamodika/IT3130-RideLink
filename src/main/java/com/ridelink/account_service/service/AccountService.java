@@ -1,5 +1,6 @@
 package com.ridelink.account_service.service;
 
+import com.ridelink.account_service.exception.AccountAlreadyExistsException;
 import com.ridelink.account_service.dto.AccountResponse;
 import com.ridelink.account_service.dto.RegisterRequest;
 import com.ridelink.account_service.entity.Account;
@@ -19,7 +20,7 @@ public class AccountService {
     public AccountResponse register(RegisterRequest request) {
 
         if (accountRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new AccountAlreadyExistsException("Email already exists");
         }
 
         Account account = new Account();

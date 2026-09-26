@@ -3,8 +3,6 @@ package com.ridelink.farepayment.domain;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import javax.sound.midi.Receiver;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,11 +13,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@SuppressWarnings("hiding")
 @Document(collection = "payments")
 @Getter @Setter @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class Payment<FareBreakdown> {
+public class Payment {
 
     @Id
     private String id;
@@ -35,14 +32,13 @@ public class Payment<FareBreakdown> {
 
     private BigDecimal amount;       // stored as Decimal128 (see MongoConfig)
     private String currency;
-    @SuppressWarnings("rawtypes")
-    private Payment method;
-    private Payment status;
+    private PaymentMethod method;
+    private PaymentStatus status;
     private String failureReason;
     private int attempts;
 
     private FareBreakdown fare;     // snapshot of the charged fare
-    private Receiver receipt;        // embedded receipt -> single-document write, no transaction needed
+    private Receipt receipt;        // embedded receipt -> single-document write, no transaction needed
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

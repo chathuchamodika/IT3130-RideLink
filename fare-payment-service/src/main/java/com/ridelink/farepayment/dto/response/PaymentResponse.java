@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import com.ridelink.farepayment.domain.Payment;
+import com.ridelink.farepayment.domain.PaymentMethod;
+import com.ridelink.farepayment.domain.PaymentStatus;
 
 public record PaymentResponse(String paymentId, String rideId, String passengerId, String driverId,
-                              BigDecimal amount, String currency, Payment method, Payment status,
+                              BigDecimal amount, String currency, PaymentMethod method, PaymentStatus status,
                               String failureReason, int attempts, FareBreakdownView fare,
                               ReceiptResponse receipt, LocalDateTime createdAt, LocalDateTime updatedAt) {
 

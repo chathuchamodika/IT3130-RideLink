@@ -2,10 +2,11 @@ package com.ridelink.farepayment.exception;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.nio.file.AccessDeniedException;
 import java.time.Instant;
 
+import com.mongodb.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;

@@ -13,7 +13,7 @@ import org.springframework.web.client.RestClientException;
 
 @Component
 @ConditionalOnProperty(prefix = "ridelink.ride-service", name = "enabled", havingValue = "true")
-public class RestRideClient implements RideClient {
+public class RestRideClient implements RideClient<RideSummary> {
 
     private final RestClient restClient;
 

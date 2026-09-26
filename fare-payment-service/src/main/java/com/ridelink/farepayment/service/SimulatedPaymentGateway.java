@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SimulatedPaymentGateway implements PaymentGateway {
 
     @Override
-    public PaymentGateway.GatewayResult process(PaymentMethod method, BigDecimal amount, String currency,
+    public GatewayResult process(PaymentMethod method, BigDecimal amount, String currency,
                                  boolean simulateFailure) {
         if (simulateFailure) {
             log.info("Simulated gateway DECLINED {} {} via {}", amount, currency, method);

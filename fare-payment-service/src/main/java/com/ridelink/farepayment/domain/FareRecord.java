@@ -13,11 +13,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@SuppressWarnings("hiding")
 @Document(collection = "fare_records")
 @Getter @Setter @Builder
 @NoArgsConstructor @AllArgsConstructor
-public class FareRecord<FareBreakdown> {
+public class FareRecord {
 
     @Id
     private String id;

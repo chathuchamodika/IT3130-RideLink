@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConditionalOnProperty(prefix = "ridelink.ride-service", name = "enabled",
                        havingValue = "false", matchIfMissing = true)
-public class DisabledRideClient implements RideClient {
+public class DisabledRideClient implements RideClient<RideSummary> {
     @Override
     public Optional<RideSummary> fetchRide(String rideId) {
         return Optional.empty();
